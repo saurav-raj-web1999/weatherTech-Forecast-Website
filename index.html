@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherTech Forecast</title>
+    <link rel="icon" href="https://banner2.cleanpng.com/20180414/pkq/kisspng-weather-computer-icons-weather-5ad204f41ba772.4298522015237132681133.jpg" type="image/icon type">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@500&display=swap" rel="stylesheet">
+     
+    
+</head>
+<body>
+    <div class="mainContainer">
+        <nav>
+            <div class="logo">
+                <h2><i class="material-icons" style="font-size: 2.8rem; color: rgb(204, 202, 202);">cloud</i>WeatherTech</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="weather.html">Weather</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                
+            </div>
+            <div id="dropMenu"><i class="material-icons">menu</i></div>
+        </nav>
+        <div id="dropDown">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        
+        <div id="container">
+            <div class="left-col">
+                <h1>WeatherTech Reports</h1>
+                <h2>Get All Latest <span style="color: rgb(0, 125, 163); font-size: 2.99rem;" > Weather</span> Reports Here!</h2>
+                <div class="btn"><a href="weather.html"><button>Get Started</button></a></div>
+                
+                <p>My style varies on my mood or the weather of the day.</p>
+            </div>
+            <div id="right-col"></div>
+        </div>
+
+        <footer>
+            <p>All its copyrighy &copy; is reserved to Saurav Raj</p>
+        </footer>
+    </div>
+
+
+
+    <!-- ---------JavaScript--------- -->
+
+
+    <script>
+        const dropMenu = document.getElementById('dropMenu');
+        const dropDown = document.getElementById('dropDown');
+        const container = document.getElementById('container');
+        const imgs = document.getElementById('right-col');
+        let flag =true;
+        let i =5;
+        
+        dropMenu.addEventListener('click',()=>{
+            if(flag){
+                flag=false;
+                dropDown.setAttribute('style',"top: 75px; position:fixed");
+                dropMenu.innerHTML="<i class='material-icons'>close</i>";
+                container.setAttribute('style',"margin-top: 130px;");
+            }
+            else{
+                flag=true;
+                dropDown.setAttribute('style',"top: -100%;");
+                dropMenu.innerHTML="<i class='material-icons'>menu</i>";
+                container.setAttribute('style',"margin-top: 0px;")
+            }
+        })
+
+        
+        const slider = ()=>{
+            imgs.setAttribute('style',`background-image: url(images/slide-${i}.png);`)
+            i++;
+            if(i==8) i=5;
+        }
+
+        setInterval(slider,3500);
+    </script>
+    
+    
+</body>
+</html>
+
+
+
+<!-- http://api.openweathermap.org/data/2.5/weather?q=Pune&units=metric&appid=61025ac6809820c812aa3cf15aaa87f3 -->

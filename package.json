@@ -1,0 +1,16 @@
+{
+  "name": "weather-forecast",
+  "version": "1.0.0",
+  "description": "Weather forecast website",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend.js"
+  },
+  "author": "Saurav Raj",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "hbs": "^4.2.0"
+  }
+}

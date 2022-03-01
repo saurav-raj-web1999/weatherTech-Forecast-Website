@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+
+}
+html{
+    font-size: 62.5%;
+}
+
+nav{
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(91, 91, 255);
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+}
+
+.logo{
+    color: #fff;
+    margin-left: 50px;
+    font-size: 2.2rem;
+    cursor: pointer;
+}
+
+
+
+.menu ul {
+    display: flex;
+    list-style: none;
+}
+.menu ul li {
+    margin-right: 45px;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: #fff;
+}
+
+#dropMenu{
+    display: none;
+    color: #fff;
+    margin-right: 19px;
+}
+
+#dropDown{
+    width: 100%;
+    z-index: 10;
+    height: 150px;
+    text-align: center;
+    background-color: rgb(129, 129, 241);
+    position: absolute;
+    top: -100%;
+}
+
+#dropDown ul li{
+    margin-top: 20px;
+    
+}
+
+#dropDown ul li a{
+    text-decoration: none;
+    font-size: 1.7rem;
+    color: #fff;
+}
+
+#dropDown ul li a:hover, .menu ul li a:hover{
+    color: rgb(250, 68, 68);
+    
+}
+
+#container{
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.left-col{
+    width: 600px;
+    height: 500px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.left-col h1{
+    font-size: 3.8rem;
+    margin-top  : 30px;
+    text-align: center;
+    letter-spacing: 0.6px;
+    white-space: 5px;
+}
+
+.left-col h2{
+    font-size: 2.4rem;
+    margin-top: 55px;
+    letter-spacing: 1px;
+}
+
+.left-col .btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 95px;
+}
+
+.left-col .btn button{
+    width: 100px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background: rgb(0, 119, 230);
+    font-size: 1.6rem;
+}
+
+.left-col .btn button:hover{
+    cursor: pointer;
+    background: rgb(0, 38, 255);
+    font-weight: 600;
+}
+
+.left-col p{
+    color: gray;
+    font-size: 1.6rem;
+    margin-top: 86px;
+    letter-spacing: 0.8px;
+    
+}
+
+#right-col{
+    width: 600px;
+    height: 500px;
+    margin-top: 20px;
+    background-image: url(images/slide-7.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+footer{
+    width: 100%;
+    height: 45px;
+    color: #fff;
+    background: black;
+    position:absolute;
+    bottom: 0;
+    text-align: center;
+    line-height: 45px;
+    font-size: 1.6rem;
+}
+
+/* ----- Media queries ------ */
+
+
+@media (max-width:1090px){
+    
+    
+    footer{
+        position:unset;
+        font-size: 1.4rem;
+    }
+    footer p{
+        height: 0;
+    }
+}
+
+@media (max-width:740px){
+    .menu{
+        display: none;
+    }
+    #dropMenu{
+        display: block;
+    }
+    .logo{
+        margin-left: 40px;
+        font-size: 1.6rem;
+    }
+
+    .left-col h1{
+        font-size: 3.6rem;
+        margin-top  : 30px;
+        letter-spacing: 0.6px;
+        white-space: 5px;
+    }
+    
+    .left-col h2{
+        font-size: 2.1rem;
+        margin-left: 10px;
+        letter-spacing: 1px;
+
+    }
+    
+    .left-col p{
+        font-size: 1.4rem;
+        letter-spacing: 0.8px;
+        margin-left: 10px;
+    }
+    footer{
+        font-size: 1.2rem;
+        height: 55px;
+        line-height: 55px;
+    }
+    .left-col p{
+        font-size: 1.1rem;
+        letter-spacing: 0px;
+    }
+}
+
+@media (max-width:640px){    
+    #right-col{
+        width: 590px;
+        height: 450px;
+        background-size:contain;
+    }
+}

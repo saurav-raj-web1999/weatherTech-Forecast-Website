@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherTech Forecast</title>
+    <link rel="icon" href="https://banner2.cleanpng.com/20180414/pkq/kisspng-weather-computer-icons-weather-5ad204f41ba772.4298522015237132681133.jpg" type="image/icon type">
+    <link rel="stylesheet" href="weatherStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bc61ef98f1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="mainContainer">
+        <nav>
+            <div class="logo">
+                <h2><i class="material-icons" style="font-size: 2.8rem; color: rgb(204, 202, 202);">cloud</i>WeatherTech</h2>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Weather</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                
+            </div>
+            <div id="dropMenu"><i class="material-icons">menu</i></div>
+        </nav>
+        <div id="dropDown">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Weather</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+
+        <div id="container">
+            <div class="searchBar">
+                <input type="text" id="find" placeholder="Enter the countary/state name...">
+                <div id="btn"><button><i class="material-icons">search</i></button></div>
+            </div>
+        </div>
+
+        <div id="display-container">
+            <div class="screen">
+                <h1 id="name">India</h1>
+                <br>
+                <div id="weather-logo">
+                    <i class="material-icons" style="color: rgb(255, 145, 0);">light_mode</i>
+                </div>
+                <h2 id="temp" >22.5 &deg; C</h2>
+                <div class="temp">
+                    <h3 id="min-temp">Min Temp : 20 &deg; C</h3>
+                    <h3 id="max-temp">Max Temp : 25 &deg; C</h3>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <footer id="footer">
+        <p>All its copyrighy &copy; is reserved to Saurav Raj</p>
+    </footer>
+
+
+    <!-- ---------JavaScript--------- -->
+
+
+    <script>
+        const dropMenu = document.getElementById('dropMenu');
+        const dropDown = document.getElementById('dropDown');
+        const container = document.getElementById('container');
+        const displayContainer = document.getElementById('display-container');
+        const footer = document.getElementById('footer');
+        
+        const searchBtn = document.getElementById('btn');
+        const name = document.getElementById('name');
+        const minTemp = document.getElementById('min-temp');
+        const maxTemp = document.getElementById('max-temp');
+        const temp = document.getElementById('temp');
+        const weatherLogo = document.getElementById('weather-logo');
+        
+        
+        let flag =true;
+        
+        dropMenu.addEventListener('click',()=>{
+            if(flag){
+                flag=false;
+                dropDown.setAttribute('style',"top: 75px; position:fixed");
+                dropMenu.innerHTML="<i class='material-icons'>close</i>";
+                container.setAttribute('style',"top: 225px;");
+                displayContainer.setAttribute('style',"top: 310px;");
+                footer.setAttribute('style',"margin-top: 150px;");
+            }
+            else{
+                flag=true;
+                dropDown.setAttribute('style',"top: -100%;");
+                dropMenu.innerHTML="<i class='material-icons'>menu</i>";
+                container.setAttribute('style',"top: 75px;")
+                displayContainer.setAttribute('style'," top:166px ;");
+                footer.setAttribute('style',"margin-top: 0px;");
+            }
+        })
+
+        const findData = async ()=>{
+            
+            const Api = `http://api.openweathermap.org/data/2.5/weather?q=${document.getElementById('find').value}&units=metric&appid=61025ac6809820c812aa3cf15aaa87f3`;
+            console.log(Api);
+            try{
+                let data = await fetch(Api);
+                let actulData = await data.json();
+
+                if(actulData.cod == 404){
+                    alert("Data not found");
+                    return;
+                }
+                
+                name.innerHTML = actulData.name;
+                minTemp.innerHTML = `Min Temp : ${actulData.main.temp_min} &deg;C`;
+                maxTemp.innerHTML = `Max Temp : ${actulData.main.temp_max} &deg;C`;
+                temp.innerHTML =`${actulData.main.temp} &deg;C` ;
+
+                if(actulData.weather[0].description == "haze"){
+                    weatherLogo.innerHTML = '<i class="fas fa-smog" style="color: #fff;"></i>';
+                }
+                else if(actulData.weather[0].description == "clear sky"){
+                    weatherLogo.innerHTML = '<i class="fas fa-cloud-sun" style="color: rgb(255, 154, 2);"></i>';
+                }
+                else if(actulData.weather[0].description == "few clouds"){
+                    weatherLogo.innerHTML = '<i class="fas fa-cloud" style="color: gray;"></i>';
+                }
+                else if(actulData.weather[0].description == "overcast clouds"){
+                    weatherLogo.innerHTML = '<i class="fas fa-cloud" style="color: #fff;"></i>';
+                }
+                else if(actulData.weather[0].description == "scattered  clouds"){
+                    weatherLogo.innerHTML = '<i class="fas fa-cloud-moon" style="color: rgb(136, 133, 133);"></i>';
+                }
+                else if(actulData.weather[0].description == "light rain"){
+                    weatherLogo.innerHTML = '<i class="fas fa-cloud-rain" style="color: rgb(6, 165, 238);"></i>';
+                }
+                else if(actulData.weather[0].description == "light snow"){
+                    weatherLogo.innerHTML = '<i class="fas fa-snowflake" style="color: rgb(6, 87, 238);"></i>';
+                }
+                else if(actulData.weather[0].description == "broken clouds"){
+                    weatherLogo.innerHTML = '<i class="fas fa-snowflake" style="color: rgb(6, 87, 238);"></i>';
+                }
+                else if(actulData.weather[0].description == "smoke"){
+                    weatherLogo.innerHTML = '<i class="fas fa-smog" style="color: #fff;"></i>';
+                }
+                else{
+                    weatherLogo.innerHTML ='<i class="material-icons" style="color: rgb(255, 145, 0);">light_mode</i>';
+                }
+                
+            }
+            catch(err){              
+            };
+
+        };
+
+        
+        const fun=()=>{
+            let inputValue = document.getElementById('find').value;
+            if(inputValue == ""){
+                alert("Please Enter Country/State Name.");
+            }
+            else if(!isNaN(inputValue)){
+                alert("Number's are not allowed!");
+            }
+            else{
+
+                findData();
+
+                
+            }
+
+            document.getElementById('find').value="";
+        }
+
+        searchBtn.addEventListener('click',fun);
+        document.getElementById('find').addEventListener('keypress',(event)=>{
+            if(event.keyCode === 13) fun();
+        });
+
+    </script>
+    
+</body>
+</html>
